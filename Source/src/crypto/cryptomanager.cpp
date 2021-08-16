@@ -45,7 +45,7 @@ namespace SLNet
 				if (RAND_bytes(m_sessionKey, EVP_MAX_KEY_LENGTH) == 0) {
 					return false; // failed to initialize the random session key
 				}
-				if (RAND_pseudo_bytes(m_initializationVector, EVP_MAX_IV_LENGTH) == 0) {
+				if (RAND_bytes(m_initializationVector, EVP_MAX_IV_LENGTH) == 0) {
 					return false; // failed to initialize the initialization vector
 				}
 
