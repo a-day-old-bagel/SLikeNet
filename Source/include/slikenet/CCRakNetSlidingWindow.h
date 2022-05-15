@@ -16,27 +16,32 @@
 /*
 http://www.ssfnet.org/Exchange/tcp/tcpTutorialNotes.html
 
-cwnd=max bytes allowed on wire at once
+additive increase/multiplicative decrease (AIMD) algorithm
+ closest to TCP Tahoe with no duplicate ACK handling https://en.wikipedia.org/wiki/TCP_congestion_control
+cwnd: congestion window, max bytes allowed on wire at once
+ssthresh: slow start threshold
 
 Start:
-cwnd=mtu
-ssthresh=unlimited
-
-Slow start:
-On ack cwnd*=2
-
-congestion avoidance:
-On ack during new period
-cwnd+=mtu*mtu/cwnd
-
-on loss or duplicate ack during period:
-sshtresh=cwnd/2
-cwnd=MTU
-This reenters slow start
+ cwnd = mtu
+ ssthresh = unlimited
 
 If cwnd < ssthresh, then use slow start
 else use congestion avoidance
 
+Slow start:
+ On ack cwnd += MTU
+
+congestion avoidance:
+ On ack during new period
+ cwnd += mtu*mtu/cwnd
+
+on nak:
+ sshtresh = cwnd/2
+
+on timeout:
+ sshtresh = cwnd/2
+ cwnd = MTU
+ This reenters slow start
 
 */
 

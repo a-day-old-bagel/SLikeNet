@@ -919,7 +919,7 @@ bool ReliabilityLayer::HandleSocketReceiveFromConnectedPlayer(
 						if (internalPacket->nextActionTime != 0) {
 							internalPacket->nextActionTime = timeRead;
 						}
-					}				
+					}
 
 					messageNumberNode = messageNumberNode->next;
 				}
@@ -1858,7 +1858,7 @@ void ReliabilityLayer::UpdateInternal( RakNetSocket2 *s, SystemAddress &systemAd
 	}
 
 
-	// Due to thread vagarities and the way I store the time to avoid slow calls to SLNet::GetTime
+	// Due to thread jitter and the way I store the time to avoid slow calls to SLNet::GetTime
 	// time may be less than lastAck
 #if CC_TIME_TYPE_BYTES==4
 	if ( statistics.messagesInResendBuffer!=0 && AckTimeout(time) )
