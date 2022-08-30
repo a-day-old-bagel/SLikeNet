@@ -2828,10 +2828,14 @@ InternalPacket* ReliabilityLayer::CreateInternalPacketFromBitStream(SLNet::BitSt
 		internalPacket->splitPacketCount=0;
 	}
 
+	const int maxPacketSize = 1024 * 1024 * 4;
+	const int maxPacketSplit = (maxPacketSize + (MINIMUM_MTU_SIZE - 1)) / MINIMUM_MTU_SIZE;
+	
 	if (readSuccess==false ||
 		internalPacket->dataBitLength==0 ||
 		internalPacket->reliability>=NUMBER_OF_RELIABILITIES ||
-		internalPacket->orderingChannel>=32 || 
+		internalPacket->orderingChannel>=32 ||
+		internalPacket->splitPacketCount > maxPacketSplit ||
 		(hasSplitPacket && (internalPacket->splitPacketIndex >= internalPacket->splitPacketCount)))
 	{
 		// If this assert hits, encoding is garbage
