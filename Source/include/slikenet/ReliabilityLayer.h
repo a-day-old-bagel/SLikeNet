@@ -135,7 +135,7 @@ struct BPSTracker
 	uint64_t GetTotal1(void) const;
 //	uint64_t GetTotal2(void) const;
 
-	struct TimeAndValue2
+	struct RAK_DLL_EXPORT TimeAndValue2
 	{
 		TimeAndValue2();
 		~TimeAndValue2();
