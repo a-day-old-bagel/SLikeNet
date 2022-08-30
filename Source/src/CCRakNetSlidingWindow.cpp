@@ -63,7 +63,7 @@ void CCRakNetSlidingWindow::Update(CCTimeType curTime, bool hasDataToSendOrResen
 	(void) hasDataToSendOrResend;
 }
 // ----------------------------------------------------------------------------------------------------------------------------
-int CCRakNetSlidingWindow::GetRetransmissionBandwidth(CCTimeType curTime, CCTimeType timeSinceLastTick, uint32_t unacknowledgedBytes, bool isContinuousSend) {
+int64_t CCRakNetSlidingWindow::GetRetransmissionBandwidth(CCTimeType curTime, CCTimeType timeSinceLastTick, uint64_t unacknowledgedBytes, bool isContinuousSend) {
 	(void) curTime;
 	(void) isContinuousSend;
 	(void) timeSinceLastTick;
@@ -71,14 +71,14 @@ int CCRakNetSlidingWindow::GetRetransmissionBandwidth(CCTimeType curTime, CCTime
 	return unacknowledgedBytes;
 }
 // ----------------------------------------------------------------------------------------------------------------------------
-int CCRakNetSlidingWindow::GetTransmissionBandwidth(CCTimeType curTime, CCTimeType timeSinceLastTick, uint32_t unacknowledgedBytes, bool isContinuousSend) {
+int64_t CCRakNetSlidingWindow::GetTransmissionBandwidth(CCTimeType curTime, CCTimeType timeSinceLastTick, uint64_t unacknowledgedBytes, bool isContinuousSend) {
 	(void) curTime;
 	(void) timeSinceLastTick;
 
 	_isContinuousSend=isContinuousSend;
 
-	if (unacknowledgedBytes<=cwnd)
-		return (int) (cwnd-unacknowledgedBytes);
+	if (unacknowledgedBytes <= cwnd)
+		return (int64_t) (cwnd - unacknowledgedBytes);
 	else
 		return 0;
 }

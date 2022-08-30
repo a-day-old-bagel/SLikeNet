@@ -577,7 +577,7 @@ private:
 #endif
 
 
-	uint32_t unacknowledgedBytes;
+	uint64_t unacknowledgedBytes;
 	
 	bool ResendBufferOverflow(void) const;
 	void ValidateResendList(void) const;

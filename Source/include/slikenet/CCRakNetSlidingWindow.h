@@ -101,8 +101,8 @@ class CCRakNetSlidingWindow
 	/// Update over time
 	void Update(CCTimeType curTime, bool hasDataToSendOrResend);
 
-	int GetRetransmissionBandwidth(CCTimeType curTime, CCTimeType timeSinceLastTick, uint32_t unacknowledgedBytes, bool isContinuousSend);
-	int GetTransmissionBandwidth(CCTimeType curTime, CCTimeType timeSinceLastTick, uint32_t unacknowledgedBytes, bool isContinuousSend);
+	int64_t GetRetransmissionBandwidth(CCTimeType curTime, CCTimeType timeSinceLastTick, uint64_t unacknowledgedBytes, bool isContinuousSend);
+	int64_t GetTransmissionBandwidth(CCTimeType curTime, CCTimeType timeSinceLastTick, uint64_t unacknowledgedBytes, bool isContinuousSend);
 
 	/// Acks do not have to be sent immediately. Instead, they can be buffered up such that groups of acks are sent at a time
 	/// This reduces overall bandwidth usage
