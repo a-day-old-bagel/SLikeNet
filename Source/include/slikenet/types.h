@@ -407,7 +407,7 @@ typedef uint64_t NetworkID;
 /// This represents a user message from another system.
 struct Packet
 {
-	/// The system that send this packet.
+	/// The system that sent this packet.
 	SystemAddress systemAddress;
 
 	/// A unique identifier for the system that sent this packet, regardless of IP address (internal / external / remote system)
